@@ -7,15 +7,18 @@ RM:=rm
 
 .PHONY : clean
 
-all: clean modules app
+all: clean modules work monitor
 
-obj-m:= kechenl3_MP2.o
+obj-m:= kechenl3_MP3.o
 
 modules:
 	$(MAKE) -C $(KERNEL_SRC) M=$(SUBDIR) modules
 
-app: userapp.c userapp.h
-	$(GCC) -o userapp userapp.c
+work: work.c
+	$(GCC) -o work work.c
+
+monitor: monitor.c
+	$(GCC) -o monitor monitor.c
 
 clean:
-	$(RM) -f userapp *~ *.ko *.o *.mod.c Module.symvers modules.order
+	$(RM) -f work monitor *~ *.ko *.o *.mod.c Module.symvers modules.order
