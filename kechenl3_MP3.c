@@ -192,7 +192,7 @@ static ssize_t registration(unsigned int pid) {
 
     // If the first one, clean the mapped memory and queue dwork
     if (size == 1) {
-	memset(mapped, 0, NPAGES * PAGE_SIZE);
+	memset(mapped, -1L, NPAGES * PAGE_SIZE);
 	queue_delayed_work(wq, &monitor_work, msecs_to_jiffies(50));
     }
 
