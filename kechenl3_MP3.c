@@ -153,7 +153,7 @@ static void work_handler(struct work_struct *work_arg) {
     // Queue next monitor work
     queue_delayed_work(wq, &monitor_work, msecs_to_jiffies(50));
 
-    printk(KERN_DEBUG "Workqueue worker completed\n");
+    /*printk(KERN_DEBUG "Workqueue worker completed\n");*/
 }
 
 // Registration func for process to register
@@ -461,7 +461,7 @@ int __init mp3_init(void) {
     chrdev_major = (unsigned int)ret;
 
     // Make a new slab cache
-    tasks_cache = KMEM_CACHE(mp3_task_struct, SLAB_PANIC);
+    tasks_cache = KMEM_CACHE(mp3_task_struct, 0);
 
     // Allocate the vmalloc buffer in size 128 * 4KB
     mapped = (unsigned long*)vmalloc(NPAGES * PAGE_SIZE);
