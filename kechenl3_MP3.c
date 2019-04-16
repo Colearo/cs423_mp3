@@ -110,7 +110,7 @@ static void _work_handler(void) {
 		&maj_flt, &utime, &stime);
 	if (ret != 0) {
 	   list_del(&cur->next);
-	   kfree(cur);
+	   kmem_cache_free(tasks_cache, cur);
 	} else {
 	    cur->utilization = utime + stime;
 	    cur->major_page_fault = maj_flt;
